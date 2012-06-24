@@ -1,0 +1,11 @@
+TODO
+====
+
+Please feel free to make pull requests against these
+things or other things you want to fix and/or add!
+
+* Handle authentication mechanisms.
+  * Currently refers to system PAM.
+* Handle clustered netatalk setups.
+* Make all the things better. :-)
+* Enhance documentation.

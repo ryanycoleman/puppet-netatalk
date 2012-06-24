@@ -1,0 +1,34 @@
+Netatalk Module
+===============
+
+Overview
+--------
+
+This module (via the netatalk class):
+  * Installs the netatalk package
+  * Delivers a default netatalk config
+  * Establishes the netatalk service
+
+Requires
+--------
+ripienaar/concat
+
+
+Sample Usage
+------------
+  include netatalk
+  netatalk::volume { 'software':
+    path => '/Applications',
+  }
+
+  netatalk:::volume shares out netatalk volumes
+    by adding entries to AppleVolumes.default  
+  Home volumes are shared by default
+
+  Parameters:
+    path        = path of volume to share out (path)
+    volume_name = name to advertise for shared volume (string)
+    options     = options for shared volume (string)
+    order       = order of entry in config, relative to others.
+                  defaults to 02, main config is 01
+
