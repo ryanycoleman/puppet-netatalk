@@ -36,7 +36,7 @@ define netatalk::volume (
   }
 
   concat::fragment { $name:
-    target  => $netatalk::apple_volumes_config,
+    target  => $netatalk::params::volumes_config,
     content => "${path} \"${volume_name}\" ${options}",
     order   => $order,
     notify  => Service[$netatalk::params::service_name],
