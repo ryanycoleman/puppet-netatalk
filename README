@@ -11,7 +11,10 @@ This module (via the netatalk class):
 
 Requires
 --------
-ripienaar/concat
+ripienaar/concat Puppet Module  
+The netatalk package  
+  You may need EPEL on a RedHat family OS in order to get netatalk.  
+  http://fedoraproject.org/wiki/EPEL
 
 
 Sample Usage
