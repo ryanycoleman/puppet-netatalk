@@ -52,9 +52,21 @@ class netatalk {
     group => 'root',
   }
 
+  concat { 'servers':
+    name  => $netatalk::params::afpd_config,
+    owner => 'root',
+    group => 'root',
+  }
+
   concat::fragment { 'volumes_default':
     target => $netatalk::params::volumes_config,
     source => 'puppet:///modules/netatalk/AppleVolumes.default',
+    order => '01',
+  }
+
+  concat::fragment { 'afpd_conf':
+    target => $netatalk::params::afpd_config,
+    source => 'puppet:///modules/netatalk/afpd.conf',
     order => '01',
   }
 
