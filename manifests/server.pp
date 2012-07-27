@@ -34,7 +34,7 @@ define netatalk::server (
 
   concat::fragment { $name:
     target  => $netatalk::params::afpd_config,
-    content => "${server_name} ${options_string}",
+    content => "${server_name} ${options_string}\n",
     order   => $order,
     notify  => Service[$netatalk::params::service_name],
   }
