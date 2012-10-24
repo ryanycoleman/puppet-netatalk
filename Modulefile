@@ -8,5 +8,5 @@ description ''
 project_page 'https://github.com/rcoleman/puppet-netatalk/issues'
 
 ## Add dependencies, if any:
-dependency 'ripienaar/concat', '>= 0.x'
-dependency 'puppetlabs/stdlib', '>= 2.x'
+dependency 'ripienaar/concat', '0.x'
+dependency 'puppetlabs/stdlib', '2.x'
