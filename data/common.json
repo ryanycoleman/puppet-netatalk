@@ -1,1 +1,5 @@
-{"netatalk::package_name" : "netatalk"}
+{
+	"netatalk::package_name" : "netatalk",
+	"netatalk::service_name" : "netatalk",
+	"netatalk::afp_service" : true
+}

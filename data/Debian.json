@@ -1,6 +1,6 @@
 {
 	"netatalk::config_dir" : "/etc/netatalk",
-	"netatalk::global_config" : "/etc/netatalk/netatalk.conf",
+	"netatalk::global_config" : "/etc/default/netatalk",
 	"netatalk::volumes_config" : "/etc/netatalk/AppleVolumes.default",
 	"netatalk::afpd_config" : "/etc/netatalk/afpd.conf"
 }

@@ -22,7 +22,7 @@ export ATALK_MAC_CHARSET
 
 #### Set which daemons to run.
 #### If you use AFP file server, run both cnid_metad and afpd.
-<% if scope.lookupvar('netatalk::params::afp_service') == true -%>
+<% if scope.lookupvar('netatalk::afp_service') == true -%>
 CNID_METAD_RUN=yes
 AFPD_RUN=yes
 <% else -%>

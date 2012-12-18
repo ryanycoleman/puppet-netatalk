@@ -4,7 +4,7 @@
 #
 # Parameters:
 #   none.
-#   File,Package,Service params are set in netatalk::params
+#   File,Package,Service params are set in netatalk
 #
 # Actions:
 #  This class establishes a netatalk (afp) service by
@@ -19,29 +19,37 @@
 #   include netatalk
 class netatalk(
   $package_name,
+  $service_name,
+  $config_dir,
+  $global_config,
+  $volumes_config,
+  $afpd_config,
+  $afp_service = true,
+  $afp_port    = '548',
 ) {
 
   include concat::setup
-  include netatalk::params
+
+  notify { $afp_service: }
 
   package { $netatalk::package_name:
     ensure => present,
   }
 
-  file { $netatalk::params::config_dir:
+  file { $netatalk::config_dir:
     ensure  => directory,
     require => Package[$netatalk::package_name],
-    notify  => Service[$netatalk::params::service_name],
+    notify  => Service[$netatalk::service_name],
   }
 
-  file { $netatalk::params::global_config:
+  file { $netatalk::global_config:
     ensure => file,
     content => template('netatalk/netatalk.conf.erb'),
     require => Package[$netatalk::package_name],
-    notify  => Service[$netatalk::params::service_name],
+    notify  => Service[$netatalk::service_name],
   }
 
-  service { $netatalk::params::service_name:
+  service { $netatalk::service_name:
     ensure     => running,
     enable     => true,
     hasstatus  => true,
@@ -49,25 +57,25 @@ class netatalk(
   }
 
   concat { 'volumes':
-    name  => $netatalk::params::volumes_config,
+    name  => $netatalk::volumes_config,
     owner => 'root',
     group => 'root',
   }
 
   concat { 'servers':
-    name  => $netatalk::params::afpd_config,
+    name  => $netatalk::afpd_config,
     owner => 'root',
     group => 'root',
   }
 
   concat::fragment { 'volumes_default':
-    target => $netatalk::params::volumes_config,
+    target => $netatalk::volumes_config,
     source => 'puppet:///modules/netatalk/AppleVolumes.default',
     order => '01',
   }
 
   concat::fragment { 'afpd_conf':
-    target => $netatalk::params::afpd_config,
+    target => $netatalk::afpd_config,
     source => 'puppet:///modules/netatalk/afpd.conf',
     order => '01',
   }
