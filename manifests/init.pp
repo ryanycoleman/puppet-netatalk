@@ -17,25 +17,27 @@
 #
 # Sample Usage:
 #   include netatalk
-class netatalk {
+class netatalk(
+  $package_name,
+) {
 
   include concat::setup
   include netatalk::params
 
-  package { $netatalk::params::package_name:
+  package { $netatalk::package_name:
     ensure => present,
   }
 
   file { $netatalk::params::config_dir:
     ensure  => directory,
-    require => Package[$netatalk::params::package_name],
+    require => Package[$netatalk::package_name],
     notify  => Service[$netatalk::params::service_name],
   }
 
   file { $netatalk::params::global_config:
     ensure => file,
     content => template('netatalk/netatalk.conf.erb'),
-    require => Package[$netatalk::params::package_name],
+    require => Package[$netatalk::package_name],
     notify  => Service[$netatalk::params::service_name],
   }
 

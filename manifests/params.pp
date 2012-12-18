@@ -1,6 +1,6 @@
 class netatalk::params {
 
-  $package_name = 'netatalk'
+  #$package_name = 'netatalk'
   $service_name = 'netatalk'
   $afp_service = true
   $afp_port    = '548'
