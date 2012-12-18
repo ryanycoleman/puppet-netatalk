@@ -30,8 +30,6 @@ class netatalk(
 
   include concat::setup
 
-  notify { $afp_service: }
-
   package { $netatalk::package_name:
     ensure => present,
   }
