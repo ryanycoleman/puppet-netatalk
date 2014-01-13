@@ -169,11 +169,3 @@
 #                        device number is not constant across a reboot,
 #                        cluster, ...
 #
-
-# The line below sets some DEFAULT, starting with Netatalk 2.1.
-:DEFAULT: options:upriv,usedots
-
-# By default all users have access to their home directories.
-~/			"Home Directory"
-
-# End of File

@@ -17,7 +17,10 @@
 #
 # Sample Usage:
 #   include netatalk
-class netatalk {
+class netatalk(
+    $share_home_directories = true ,
+    $volume_defaults        = undef ,
+  ) {
 
   include concat::setup
   include netatalk::params
@@ -58,9 +61,29 @@ class netatalk {
     group => 'root',
   }
 
+  if $volume_defaults {
+    $_volume_defaults = $volume_defaults
+  }
+  else {
+    $_volume_defaults = $netatalk::params::volume_defaults
+  }
+  $_volume_defaults_config = "# The line below sets some DEFAULT, starting with Netatalk 2.1.\n:DEFAULT:${_volume_defaults}\n"
+
+  if $share_home_directories {
+    $_share_home_directories_config = "# By default all users have access to their home directories.\n~/			\"Home Directory\"",
+  } else {
+    $_share_home_directories_config = ''
+  }
+
   concat::fragment { 'volumes_default':
     target => $netatalk::params::volumes_config,
     source => 'puppet:///modules/netatalk/AppleVolumes.default',
+    order => '00',
+  }
+
+  concat::fragment { 'volumes_default_settings':
+    target => $netatalk::params::volumes_config,
+    content => "\n${_volume_defaults_config}\n${_share_home_directories_config}\n",
     order => '01',
   }
 
