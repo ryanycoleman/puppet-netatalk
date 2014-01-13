@@ -70,7 +70,7 @@ class netatalk(
   $_volume_defaults_config = "# The line below sets some DEFAULT, starting with Netatalk 2.1.\n:DEFAULT:${_volume_defaults}\n"
 
   if $share_home_directories {
-    $_share_home_directories_config = "# By default all users have access to their home directories.\n~/			\"Home Directory\"",
+    $_share_home_directories_config = "# By default all users have access to their home directories.\n~/			\"Home Directory\""
   } else {
     $_share_home_directories_config = ''
   }
