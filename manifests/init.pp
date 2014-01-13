@@ -42,10 +42,23 @@ class netatalk(
     notify  => Service[$netatalk::params::service_name],
   }
 
+  case $::osfamily {
+    'ubuntu', 'debian': {
+      # check the process list for the service name to see if it's running
+      $afpd_service_has_built_in_status = false
+      $afpd_service_status_command = "ps ax | egrep -v -e 'egrep' | egrep -e 'afpd'"
+    }
+    default: {
+      $afpd_service_has_built_in_status = true
+      $afpd_service_status_command = ''
+    }
+  }
+
   service { $netatalk::params::service_name:
     ensure     => running,
     enable     => true,
-    hasstatus  => true,
+    hasstatus  => $afpd_service_has_built_in_status,
+    status     => $afpd_service_status_command,
     hasrestart => true,
   }
 
