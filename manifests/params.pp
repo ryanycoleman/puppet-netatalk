@@ -4,6 +4,7 @@ class netatalk::params {
   $service_name = 'netatalk'
   $afp_service = true
   $afp_port    = '548'
+  $volume_defaults = 'options:upriv,usedots'
 
   case $::operatingsystem {
 

@@ -8,7 +8,7 @@
 #   volume_name = name to advertise for shared volume (string)
 #   options     = options for shared volume (string)
 #   order       = order of entry in config, relative to others.
-#                 defaults to 02, main config is 01
+#                 defaults to 02, main config is 00-01
 #
 # Actions:
 #   Adds an entry to AppleVolumes.default
