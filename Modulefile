@@ -1,11 +1,11 @@
 name    'rcoleman-netatalk'
-version '0.2.0'
-source 'git://github.com/rcoleman/puppet-netatalk.git'
-author 'rcoleman'
+version '0.3.0'
+source 'git://github.com/ryanycoleman/puppet-netatalk.git'
+author 'ryanycoleman'
 license 'Apache v2'
-summary 'Puppet module for Netatalk'
+summary 'Puppet module for the Netatalk AFP fileserver'
 description ''
-project_page 'https://github.com/rcoleman/puppet-netatalk/issues'
+project_page 'https://github.com/ryanycoleman/puppet-netatalk/issues'
 
 ## Add dependencies, if any:
 dependency 'puppetlabs/concat', '>= 1.0.0'
